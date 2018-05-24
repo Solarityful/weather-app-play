@@ -9,9 +9,15 @@ GET     /count                      controllers.CountController.count
 # An example controller showing how to write asynchronous code
 GET     /message                    controllers.AsyncController.message
 
-GET     /location/search            controllers.LocationController.search
+# The collection of routes related to location and weather
+# Landing page for location weather app
+GET     /location                   controllers.LocationController.home
 
-GET     /location/:id                controllers.LocationController.getLocation(id: Integer)
+# Results page for search
+GET     /location/search/:query            controllers.LocationController.search(query: String)
+
+# Results page for location lookup
+GET     /location/:id               controllers.LocationController.getLocation(id: Integer)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
