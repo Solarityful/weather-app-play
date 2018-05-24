@@ -1,0 +1,9 @@
+@(result: models.LocationSearchResult)
+
+<h1>Total number of results @result.getTotalResults()</h1>
+
+<ul>
+@for(location <- result.getLocations()) {
+  <li>@location.getName()</li>
+}
+</ul>
