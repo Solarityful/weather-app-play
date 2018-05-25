@@ -2,6 +2,10 @@
 
 <h1>Total number of results @result.getTotalResults()</h1>
 
+<a href="/location/search">
+  <button>Search</button>
+</a>
+
 <ul>
 @for(location <- result.getLocations()) {
   <a href= @("/location/" + location.getId())> <li>@location.getName()</li> </a>

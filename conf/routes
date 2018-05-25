@@ -11,7 +11,7 @@ GET     /message                    controllers.AsyncController.message
 
 # The collection of routes related to location and weather
 # Landing page for location weather app
-GET     /location                   controllers.LocationController.home
+GET     /location/search                   controllers.LocationController.home
 
 # Results page for search
 GET     /location/search/:query     controllers.LocationController.search(query: String)
