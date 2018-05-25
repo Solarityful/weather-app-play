@@ -1,6 +1,8 @@
 package controllers;
 import models.*;
 import play.mvc.*;
+import play.data.Form;
+import play.data.FormFactory;
 import views.html.*;
 import javax.inject.Inject;
 import play.libs.ws.*;
@@ -15,10 +17,12 @@ public class LocationController extends Controller implements WSBodyReadables, W
     private String locationURL = "https://www.metaweather.com/api/location/search/";
     private String forecastURL = "https://www.metaweather.com/api/location/";
     private Integer daysToForecast = 5;
+    private Form<SearchData> form;
 
     @Inject 
-    public LocationController(WSClient ws) {
+    public LocationController(WSClient ws, FormFactory formFactory) {
         this.ws = ws;
+        this.form = formFactory.form(SearchData.class);
     }
 
     public CompletionStage<Result> search(String query) {
@@ -61,7 +65,18 @@ public class LocationController extends Controller implements WSBodyReadables, W
         
     }
 
+    public Result searchForm(){
+        final Form<SearchData> boundForm = form.bindFromRequest();
+        if (boundForm.hasErrors()){
+            return badRequest(search.render(boundForm));
+        }
+        else{
+            SearchData data = boundForm.get();
+            return redirect(routes.LocationController.search(data.getQuery()));
+        }
+    }
+
     public Result home() {
-        return ok(search.render());
+        return ok(search.render(form));
     }
 }

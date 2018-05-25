@@ -14,7 +14,9 @@ GET     /message                    controllers.AsyncController.message
 GET     /location                   controllers.LocationController.home
 
 # Results page for search
-GET     /location/search/:query            controllers.LocationController.search(query: String)
+GET     /location/search/:query     controllers.LocationController.search(query: String)
+
+POST    /location/search            controllers.LocationController.searchForm
 
 # Results page for location lookup
 GET     /location/:id               controllers.LocationController.getLocation(id: Integer)

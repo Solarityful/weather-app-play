@@ -1,0 +1,14 @@
+@(form: Form[SearchData])
+
+@main("Search") {
+  <h1>Location Forecast App</h1>
+
+      @helper.form(routes.LocationController.searchForm) {
+        @helper.CSRF.formField
+
+        @helper.inputText(form("query"))
+
+        <button type="submit">Search</button>
+    }
+}
+
