@@ -4,9 +4,12 @@
 
 
 @for(day <- forecast.getDays()) {
-  <ul>
-    <li>@day.getDescription()</li>
-    <li>@day.getTemperatureHigh()</li>
-    <li>@day.getTemperatureLow()</li>
-  </ul>
+  <div>
+    <h2>@day.getDate()</hi>
+    <ul>
+      <li>@day.getDescription()</li>
+      <li>@day.getTemperatureHigh()</li>
+      <li>@day.getTemperatureLow()</li>
+    </ul>
+  </div>
 }

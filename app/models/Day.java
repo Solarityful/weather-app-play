@@ -1,15 +1,15 @@
 package models;
-import java.util.Date;
 import com.fasterxml.jackson.databind.JsonNode;
 
 public class Day {
-    protected Date date;
+    protected String date;
     protected Double temperatureHigh;
     protected Double temperatureLow;
     protected String description;
     private static String jsonIdentifier = "id";
 
     public Day(JsonNode weatherNode){
+        this.date = weatherNode.get("applicable_date").asText();
         this.description = weatherNode.get("weather_state_name").asText();
         this.temperatureHigh = weatherNode.get("max_temp").asDouble();
         this.temperatureLow = weatherNode.get("min_temp").asDouble();
@@ -19,11 +19,11 @@ public class Day {
 
     }
 
-    public Date getDate(){
+    public String getDate(){
         return this.date;
     }
 
-    public void setDate(Date date){
+    public void setDate(String date){
         this.date = date;
     }
 
@@ -54,4 +54,5 @@ public class Day {
     public static String getJsonIdentifier(){
         return jsonIdentifier;
     }
+
 }

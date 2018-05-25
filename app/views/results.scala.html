@@ -4,6 +4,6 @@
 
 <ul>
 @for(location <- result.getLocations()) {
-  <li>@location.getName()</li>
+  <a href= @("/location/" + location.getId())> <li>@location.getName()</li> </a>
 }
 </ul>
