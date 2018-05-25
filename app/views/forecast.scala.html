@@ -1,11 +1,12 @@
 @(forecast: models.Forecast)
 
-<h1>Forecast for the next @forecast.getNumberOfDays()</h1>
+<h1>Forecast for the next @forecast.getNumberOfDays() days</h1>
 
-<ul>
+
 @for(day <- forecast.getDays()) {
-  <li>@day.getDescription()</li>
-  <li>@day.getTemperatureHigh()</li>
-  <li>@day.getTemperatureLow()</li>
+  <ul>
+    <li>@day.getDescription()</li>
+    <li>@day.getTemperatureHigh()</li>
+    <li>@day.getTemperatureLow()</li>
+  </ul>
 }
-</ul>

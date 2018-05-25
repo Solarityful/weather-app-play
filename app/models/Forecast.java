@@ -4,6 +4,7 @@ import java.util.List;
 public class Forecast {
     protected Integer numberOfDays;
     protected List<Day> listOfDays;
+    private static String jsonIdentifier = "consolidated_weather";
 
     public Integer getNumberOfDays(){
         return this.numberOfDays;
@@ -19,5 +20,9 @@ public class Forecast {
 
     public void setDays(List<Day> listOfDays){
         this.listOfDays = listOfDays;
+    }
+
+    public static String getJsonIdentifier(){
+        return jsonIdentifier;
     }
 }

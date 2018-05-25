@@ -14,10 +14,7 @@ public class LocationController extends Controller implements WSBodyReadables, W
     private final WSClient ws;
     private String locationURL = "https://www.metaweather.com/api/location/search/";
     private String forecastURL = "https://www.metaweather.com/api/location/";
-    private String locationIdentifier = "title";
-    private String weatherIdentifier = "woeid";
     private Integer daysToForecast = 5;
-    private String daysArrayIdentifier = "consolidated_weather";
 
     @Inject 
     public LocationController(WSClient ws) {
@@ -30,10 +27,10 @@ public class LocationController extends Controller implements WSBodyReadables, W
             List<Location> locationsList = new ArrayList();
 
             JsonNode responseJson = r.asJson();
-            List<JsonNode> listOfResults = responseJson.findParents(locationIdentifier);
+            List<JsonNode> listOfResults = responseJson.findParents(Location.getJsonIdentifier());
 
             for (JsonNode resultNode : listOfResults){
-                Location resultLocation = new Location(resultNode.get(locationIdentifier).asText(), resultNode.get(weatherIdentifier).asInt());
+                Location resultLocation = new Location(resultNode);
                 locationsList.add(resultLocation);
             }
             resultToSend.setLocations(locationsList);
@@ -49,10 +46,10 @@ public class LocationController extends Controller implements WSBodyReadables, W
             List<Day> daysList = new ArrayList();
 
             JsonNode responseJson = r.asJson();
-            List<JsonNode> listOfDays = responseJson.get(daysArrayIdentifier).findParents("id");
+            List<JsonNode> listOfDays = responseJson.get(Forecast.getJsonIdentifier()).findParents(Day.getJsonIdentifier());
 
             for (JsonNode dayNode : listOfDays){
-                if (daysList.size() <5) {
+                if (daysList.size() < daysToForecast) {
                     Day day = new Day(dayNode);
                     daysList.add(day);
                 }

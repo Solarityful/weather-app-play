@@ -7,11 +7,16 @@ public class Day {
     protected Double temperatureHigh;
     protected Double temperatureLow;
     protected String description;
+    private static String jsonIdentifier = "id";
 
     public Day(JsonNode weatherNode){
         this.description = weatherNode.get("weather_state_name").asText();
         this.temperatureHigh = weatherNode.get("max_temp").asDouble();
         this.temperatureLow = weatherNode.get("min_temp").asDouble();
+    }
+
+    public Day(){
+
     }
 
     public Date getDate(){
@@ -44,5 +49,9 @@ public class Day {
 
     public void setDescription(String description){
         this.description = description;
+    }
+
+    public static String getJsonIdentifier(){
+        return jsonIdentifier;
     }
 }
