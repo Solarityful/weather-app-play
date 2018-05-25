@@ -16,6 +16,8 @@ public class LocationController extends Controller implements WSBodyReadables, W
     private String forecastURL = "https://www.metaweather.com/api/location/";
     private String locationIdentifier = "title";
     private String weatherIdentifier = "woeid";
+    private Integer daysToForecast = 5;
+    private String daysArrayIdentifier = "consolidated_weather";
 
     @Inject 
     public LocationController(WSClient ws) {
@@ -26,6 +28,7 @@ public class LocationController extends Controller implements WSBodyReadables, W
         return ws.url(locationURL).addQueryParameter("query", query).get().thenApply((WSResponse r) -> {
             LocationSearchResult resultToSend = new LocationSearchResult();
             List<Location> locationsList = new ArrayList();
+
             JsonNode responseJson = r.asJson();
             List<JsonNode> listOfResults = responseJson.findParents(locationIdentifier);
 
@@ -39,8 +42,26 @@ public class LocationController extends Controller implements WSBodyReadables, W
         });
     }
 
-    public Result getLocation(int locationId) {
-        return ok(("This is the input id: "+ locationId));
+    public CompletionStage<Result> getLocation(int locationId) {
+        return ws.url(forecastURL + String.valueOf(locationId) + "/").get().thenApply((WSResponse r) -> {
+            Forecast forecastToSend = new Forecast();
+            forecastToSend.setNumberOfDays(daysToForecast);
+            List<Day> daysList = new ArrayList();
+
+            JsonNode responseJson = r.asJson();
+            List<JsonNode> listOfDays = responseJson.get(daysArrayIdentifier).findParents("id");
+
+            for (JsonNode dayNode : listOfDays){
+                if (daysList.size() <5) {
+                    Day day = new Day(dayNode);
+                    daysList.add(day);
+                }
+            }
+            forecastToSend.setDays(daysList);
+
+            return ok(forecast.render(forecastToSend));
+        });
+        
     }
 
     public Result home() {
