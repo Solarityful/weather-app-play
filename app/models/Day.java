@@ -2,16 +2,28 @@ package models;
 import com.fasterxml.jackson.databind.JsonNode;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.text.ParseException;
 
 public class Day {
-    protected String date;
+
+    SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
+    protected Date date;
     protected BigDecimal temperatureHigh;
     protected BigDecimal temperatureLow;
     protected String description;
+    
     private static String jsonIdentifier = "id";
 
     public Day(JsonNode weatherNode){
-        this.date = weatherNode.get("applicable_date").asText();
+
+        try {
+            this.date = dateformat.parse(weatherNode.get("applicable_date").asText());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        
         this.description = weatherNode.get("weather_state_name").asText();
         this.temperatureHigh = weatherNode.get("max_temp").decimalValue();
         this.temperatureLow = weatherNode.get("min_temp").decimalValue();
@@ -21,11 +33,15 @@ public class Day {
 
     }
 
-    public String getDate(){
+    public Date getDate(){
         return this.date;
     }
 
-    public void setDate(String date){
+    public String getDateAsString(){
+        return this.dateformat.format(date);
+    }
+
+    public void setDate(Date date){
         this.date = date;
     }
 
@@ -57,4 +73,11 @@ public class Day {
         return jsonIdentifier;
     }
 
+    public String getDayOfTheWeek(){
+        if (this.date != null) {
+            String dayAsString = new SimpleDateFormat("EEEE").format(date);
+            return dayAsString;
+        }
+        return "No Date Found";
+    }
 }

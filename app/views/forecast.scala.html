@@ -13,17 +13,19 @@
         <button id = "searchButton">Search</button>
       </a>
       
+      <div class="forecast">
       @for(day <- forecast.getDays()) {
-        <div id="day">
-          <h2>Test Day</h2>
+        <span>
+          <h2>@day.getDayOfTheWeek()</h2>
           <ul>
-            <li><a href="#">@day.getDate()</a></li>
+            <li>@day.getDateAsString()</li>
             <li>@day.getDescription()</li>
             <li>High @day.getTemperatureHigh() °C</li>
             <li>Low @day.getTemperatureLow() °C</li>
           </ul>
-        </div>
+        </span>
       }
+    </div>
   </body>
 
 </html>

@@ -14,7 +14,7 @@
       
       <ul id="results">
       @for(location <- result.getLocations()) {
-        <a href= @("/location/" + location.getId())> <li><button>@location.getName()</button></li> </a>
+        <a href= @("/location/" + location.getId())> <li><button class="resultButton">@location.getName()</button></li> </a>
       }
       </ul>
   </body>
