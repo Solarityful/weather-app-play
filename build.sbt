@@ -1,4 +1,4 @@
-name := """weather-app"""
+name := """weather-app-play"""
 
 version := "1.0-SNAPSHOT"
 
