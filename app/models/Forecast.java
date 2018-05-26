@@ -2,6 +2,7 @@ package models;
 import java.util.List;
 
 public class Forecast {
+    protected Location location;
     protected Integer numberOfDays;
     protected List<Day> listOfDays;
     private static String jsonIdentifier = "consolidated_weather";
@@ -24,5 +25,13 @@ public class Forecast {
 
     public static String getJsonIdentifier(){
         return jsonIdentifier;
+    }
+
+    public Location getLocation(){
+        return this.location;
+    }
+
+    public void setLocation(Location location){
+        this.location = location;
     }
 }

@@ -7,7 +7,7 @@
       <link href='https://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet'>
   </head>
   <body>
-      <h1>@forecast.getNumberOfDays() Day Forecast</h1>
+      <h1>@forecast.getLocation().getName() @forecast.getNumberOfDays() Day Forecast</h1>
 
       <a href="/location/search">
         <button id = "searchButton">Search</button>
@@ -18,8 +18,8 @@
           <h2>@day.getDate()</hi>
           <ul>
             <li>@day.getDescription()</li>
-            <li>@day.getTemperatureHigh()</li>
-            <li>@day.getTemperatureLow()</li>
+            <li>High @day.getTemperatureHigh() °C</li>
+            <li>Low @day.getTemperatureLow() °C</li>
           </ul>
         </div>
       }

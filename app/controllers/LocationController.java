@@ -27,39 +27,42 @@ public class LocationController extends Controller implements WSBodyReadables, W
 
     public CompletionStage<Result> search(String query) {
         return ws.url(locationURL).addQueryParameter("query", query).get().thenApply((WSResponse r) -> {
-            LocationSearchResult resultToSend = new LocationSearchResult();
-            List<Location> locationsList = new ArrayList();
-
             JsonNode responseJson = r.asJson();
             List<JsonNode> listOfResults = responseJson.findParents(Location.getJsonIdentifier());
+            List<Location> locationsList = new ArrayList();
 
             for (JsonNode resultNode : listOfResults){
                 Location resultLocation = new Location(resultNode);
                 locationsList.add(resultLocation);
             }
+
+            LocationSearchResult resultToSend = new LocationSearchResult();
             resultToSend.setLocations(locationsList);
 
             return ok(results.render(resultToSend));
         });
     }
 
-    public CompletionStage<Result> getLocation(int locationId) {
+    public CompletionStage<Result> getForecast(int locationId) {
         return ws.url(forecastURL + String.valueOf(locationId) + "/").get().thenApply((WSResponse r) -> {
-            Forecast forecastToSend = new Forecast();
-            forecastToSend.setNumberOfDays(daysToForecast);
-            List<Day> daysList = new ArrayList();
-
             JsonNode responseJson = r.asJson();
-            List<JsonNode> listOfDays = responseJson.get(Forecast.getJsonIdentifier()).findParents(Day.getJsonIdentifier());
 
+            List<Day> daysList = new ArrayList();
+            List<JsonNode> listOfDays = responseJson.get(Forecast.getJsonIdentifier()).findParents(Day.getJsonIdentifier());
             for (JsonNode dayNode : listOfDays){
                 if (daysList.size() < daysToForecast) {
                     Day day = new Day(dayNode);
                     daysList.add(day);
                 }
             }
-            forecastToSend.setDays(daysList);
 
+            Forecast forecastToSend = new Forecast();
+            Location forecastLocation = new Location(responseJson);
+            
+            forecastToSend.setNumberOfDays(daysToForecast);
+            forecastToSend.setLocation(forecastLocation);
+            forecastToSend.setDays(daysList);
+           
             return ok(forecast.render(forecastToSend));
         });
         

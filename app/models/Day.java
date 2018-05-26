@@ -1,18 +1,20 @@
 package models;
 import com.fasterxml.jackson.databind.JsonNode;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class Day {
     protected String date;
-    protected Double temperatureHigh;
-    protected Double temperatureLow;
+    protected BigDecimal temperatureHigh;
+    protected BigDecimal temperatureLow;
     protected String description;
     private static String jsonIdentifier = "id";
 
     public Day(JsonNode weatherNode){
         this.date = weatherNode.get("applicable_date").asText();
         this.description = weatherNode.get("weather_state_name").asText();
-        this.temperatureHigh = weatherNode.get("max_temp").asDouble();
-        this.temperatureLow = weatherNode.get("min_temp").asDouble();
+        this.temperatureHigh = weatherNode.get("max_temp").decimalValue();
+        this.temperatureLow = weatherNode.get("min_temp").decimalValue();
     }
 
     public Day(){
@@ -27,19 +29,19 @@ public class Day {
         this.date = date;
     }
 
-    public Double getTemperatureHigh(){
-        return this.temperatureHigh;
+    public BigDecimal getTemperatureHigh(){
+        return this.temperatureHigh.setScale(1, RoundingMode.DOWN);
     }
 
-    public void setTemperatureHigh(Double temperatureHigh){
+    public void setTemperatureHigh(BigDecimal temperatureHigh){
         this.temperatureHigh = temperatureHigh;
     }
 
-    public Double getTemperatureLow(){
-        return this.temperatureLow;
+    public BigDecimal getTemperatureLow(){
+        return this.temperatureLow.setScale(1, RoundingMode.DOWN);
     }
 
-    public void setTemperatureLow(Double temperatureLow){
+    public void setTemperatureLow(BigDecimal temperatureLow){
         this.temperatureLow = temperatureLow;
     }
 
