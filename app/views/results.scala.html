@@ -3,7 +3,6 @@
 <html lang="en">
   <head>
       <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/results.css")">
-      <link href='https://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet'>
   </head>
   <body> 
       <h1>Found @result.getTotalResults() Matching Results</h1>
@@ -12,10 +11,17 @@
         <button id="searchButton">Search</button>
       </a>
       
-      <ul id="results">
+      <div class ="resultGrid">
       @for(location <- result.getLocations()) {
-        <a href= @("/location/" + location.getId())> <li><button class="resultButton">@location.getName()</button></li> </a>
+        <div class="resultItem"> 
+        <a href= @("/location/" + location.getId())>
+          <button class="resultButton">
+            @location.getName()
+          </button> 
+        </a>
+        </div>
       }
-      </ul>
+
+    </div>
   </body>
 </html>
