@@ -1,14 +1,17 @@
 @(form: Form[SearchData])
 
-@main("Search") {
-  <h1>Location Forecast App</h1>
+<link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/search.css")">
+<link href='https://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet'>
+
+
+  <h1>Location Forecast</h1>
 
       @helper.form(routes.LocationController.searchForm) {
         @helper.CSRF.formField
 
         @helper.inputText(form("query"))
 
-        <button type="submit">Search</button>
+        <button type="search">Search</button>
     }
-}
+
 

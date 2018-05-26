@@ -1,18 +1,28 @@
 @(forecast: models.Forecast)
 
-<h1>Forecast for the next @forecast.getNumberOfDays() days</h1>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/search.css")">
+      <link href='https://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet'>
+  </head>
+  <body>
+      <h1>@forecast.getNumberOfDays() Day Forecast</h1>
 
-<a href="/location/search">
-  <button>Search</button>
-</a>
+      <a href="/location/search">
+        <button id = "searchButton">Search</button>
+      </a>
+      
+      @for(day <- forecast.getDays()) {
+        <div>
+          <h2>@day.getDate()</hi>
+          <ul>
+            <li>@day.getDescription()</li>
+            <li>@day.getTemperatureHigh()</li>
+            <li>@day.getTemperatureLow()</li>
+          </ul>
+        </div>
+      }
+  </body>
 
-@for(day <- forecast.getDays()) {
-  <div>
-    <h2>@day.getDate()</hi>
-    <ul>
-      <li>@day.getDescription()</li>
-      <li>@day.getTemperatureHigh()</li>
-      <li>@day.getTemperatureLow()</li>
-    </ul>
-  </div>
-}
+</html>

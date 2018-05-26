@@ -1,13 +1,21 @@
 @(result: models.LocationSearchResult)
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/search.css")">
+      <link href='https://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet'>
+  </head>
+  <body> 
+      <h1>Total Results: @result.getTotalResults()</h1>
 
-<h1>Total number of results @result.getTotalResults()</h1>
-
-<a href="/location/search">
-  <button>Search</button>
-</a>
-
-<ul>
-@for(location <- result.getLocations()) {
-  <a href= @("/location/" + location.getId())> <li>@location.getName()</li> </a>
-}
-</ul>
+      <a href="/location/search">
+        <button>Search</button>
+      </a>
+      
+      <ul>
+      @for(location <- result.getLocations()) {
+        <a href= @("/location/" + location.getId())> <li>@location.getName()</li> </a>
+      }
+      </ul>
+  </body>
+</html>
