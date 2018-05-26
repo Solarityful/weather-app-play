@@ -1,8 +1,10 @@
 # Weather-app
 
-This is a basic application that fetches and renders from a third party weather api using the Play framework
+This is a basic application that fetches and renders a 5 day forecast from a third party weather api (https://www.metaweather.com/api/) 
 
-Start app by going into project directory and executing >sbt, followd by >run, can be accessed at localhost:9000/, main routes are 
+using the Play framework (https://www.playframework.com/documentation/2.6.x/NewApplication)
+
+Start app by going into project directory and executing >sbt, followed by >run, can be accessed at localhost:9000/
 
 
 
