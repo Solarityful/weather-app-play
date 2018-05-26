@@ -17,6 +17,12 @@ button {
     cursor: pointer
 }
 
+#message {
+    text-align: center;
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    font-size: 20px;
+}
+
 #searchButton {
     
     float: center;

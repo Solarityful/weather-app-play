@@ -1,15 +1,23 @@
 @(form: Form[SearchData])
+<!DOCTYPE html>
+<html>
+    <head>
+            <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/search.css")">
+    </head>
+    <body>
+            <h1>Location Forecast</h1>
 
-<link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/search.css")">
+            @helper.form(routes.LocationController.searchForm) {
+              @helper.CSRF.formField
+      
+              @helper.inputText(form("query"), '_label -> "", '_showConstraints -> false)
+      
+              <button id = "searchButton" type="search">Search</button>
+          }
+    </body>
+</html>
 
-  <h1>Location Forecast</h1>
 
-      @helper.form(routes.LocationController.searchForm) {
-        @helper.CSRF.formField
 
-        @helper.inputText(form("query"), '_label -> "", '_showConstraints -> false)
-
-        <button id = "searchButton" type="search">Search</button>
-    }
 
 

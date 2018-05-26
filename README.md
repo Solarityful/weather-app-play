@@ -6,7 +6,9 @@ using the Play framework (https://www.playframework.com/documentation/2.6.x/NewA
 
 requires sbt (https://www.scala-sbt.org/download.html) download and location added to path variable
 
-Start app by going into project directory and executing >sbt, followed by >run, can be accessed at localhost:9000/
+Start app by going into project directory and executing >sbt, followed by >run (optional: execute >compile before >run), can be accessed at localhost:9000/
+
+Some tests can be executed by executing >sbt, followed by >test
 
 
 

@@ -22,9 +22,9 @@ public class BrowserTest extends WithBrowser {
      * in this example we just check if the welcome page is being shown
      */
     @Test
-    public void test() {
+    public void testHome() {
         browser.goTo("http://localhost:" + play.api.test.Helpers.testServerPort());
-        assertTrue(browser.pageSource().contains("Your new application is ready."));
+        assertTrue(browser.pageSource().contains("Location Forecast"));
     }
 
 }

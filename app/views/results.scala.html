@@ -1,4 +1,4 @@
-@(result: models.LocationSearchResult)
+@(result: models.LocationSearchResult, message: String)
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,6 +6,10 @@
   </head>
   <body> 
       <h1>Found @result.getTotalResults() Matching Results</h1>
+
+      <p id="message">
+          @message
+        </p>
 
       <a href="/location/search">
         <button id="searchButton">Search</button>

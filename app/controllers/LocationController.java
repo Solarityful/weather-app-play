@@ -39,7 +39,14 @@ public class LocationController extends Controller implements WSBodyReadables, W
             LocationSearchResult resultToSend = new LocationSearchResult();
             resultToSend.setLocations(locationsList);
 
-            return ok(results.render(resultToSend));
+            if (locationsList.size() == 0){
+                String noResultsMessage = "No matches found for " + query + " :(";
+                return ok(results.render(resultToSend, noResultsMessage));
+            }
+            else{
+                String defaultMessage = "Find what you were looking for?";
+                return ok(results.render(resultToSend, defaultMessage));
+            }
         });
     }
 
