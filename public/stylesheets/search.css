@@ -1,16 +1,38 @@
 h1 {
     text-align: center;
-    font-family: 'Merriweather';
     font-size: 80px;
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
 
-button {
+#results {
+    text-align: center;
+    padding:0;
+    margin:0;
+    }
+
+#results li {
+    list-style-type: none;
+    margin-bottom: 20px;
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    font-size: 17px;
+}
+
+#results a {
+    width: 20px;
+}
+
+#searchButton {
+    
     float: center;
+    text-align: center;
     width: 20%;
+    margin-left: 40%;
+    margin-right: 40%;
     padding: 10px;
-    background: #2196F3;
+    margin-bottom: 60px;
+    background: rgb(0, 140, 255);
     color: white;
-    font-family: 'Merriweather';
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
     font-size: 17px;
     border: 1px solid grey;
     border-left: none; /* Prevent double borders */
@@ -19,15 +41,19 @@ button {
 
 form {
     text-align: center;
+    font-size: 17px;
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
 
 input[type=text] {
-    padding: 10px;
+    padding: 20px;
     font-size: 17px;
     border: 1px solid grey;
     float: left;
-    width: 80%;
+    width: 40%;
     background: #f1f1f1;
+    margin-left: 29%;
+    margin-bottom: 40px;
 }
 
 button:hover {

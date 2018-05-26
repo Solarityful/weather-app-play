@@ -9,9 +9,9 @@
       @helper.form(routes.LocationController.searchForm) {
         @helper.CSRF.formField
 
-        @helper.inputText(form("query"))
+        @helper.inputText(form("query"), '_label -> "", '_showConstraints -> false)
 
-        <button type="search">Search</button>
+        <button id = "searchButton" type="search">Search</button>
     }
 
 

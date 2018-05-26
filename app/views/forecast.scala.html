@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-      <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/search.css")">
+      <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/forecast.css")">
       <link href='https://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet'>
   </head>
   <body>
@@ -14,9 +14,10 @@
       </a>
       
       @for(day <- forecast.getDays()) {
-        <div>
-          <h2>@day.getDate()</hi>
+        <div id="day">
+          <h2>Test Day</h2>
           <ul>
+            <li><a href="#">@day.getDate()</a></li>
             <li>@day.getDescription()</li>
             <li>High @day.getTemperatureHigh() °C</li>
             <li>Low @day.getTemperatureLow() °C</li>

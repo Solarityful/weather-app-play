@@ -2,19 +2,19 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-      <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/search.css")">
+      <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/results.css")">
       <link href='https://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet'>
   </head>
   <body> 
-      <h1>Total Results: @result.getTotalResults()</h1>
+      <h1>Found @result.getTotalResults() Matching Results</h1>
 
       <a href="/location/search">
-        <button>Search</button>
+        <button id="searchButton">Search</button>
       </a>
       
-      <ul>
+      <ul id="results">
       @for(location <- result.getLocations()) {
-        <a href= @("/location/" + location.getId())> <li>@location.getName()</li> </a>
+        <a href= @("/location/" + location.getId())> <li><button>@location.getName()</button></li> </a>
       }
       </ul>
   </body>
